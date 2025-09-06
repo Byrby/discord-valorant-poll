@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  discord-bot:
+    container_name: valorant-tryhard-bot
+    build: .
+    restart: unless-stopped
+    environment:
+      BOT_TOKEN: "${BOT_TOKEN}"
+      GUILD_ID: "${GUILD_ID}"
+      CHANNEL_ID: "${CHANNEL_ID}"
+      ROLE_NAME: "${ROLE_NAME}"
+      POLL_CLOSE_DELAY_SECONDS: "${POLL_CLOSE_DELAY_SECONDS}"
+      DEBUG_POLL: "${DEBUG_POLL}"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python bot.py
